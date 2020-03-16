@@ -1,0 +1,101 @@
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h1>
+      Comment help request #<%= @comment_help_request.id %> details
+    </h1>
+
+    <div class="row mb-3">
+      <div class="col">
+        <a href="/comment_help_requests" class="btn btn-block btn-outline-secondary">
+          Go back
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/delete_comment_help_request/<%= @comment_help_request.id %>" class="btn btn-block btn-outline-secondary">
+          Delete comment help request
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Author
+      </dt>
+      <dd>
+        <%= @comment_help_request.author_id %>
+      </dd>
+
+      <dt>
+        Help request
+      </dt>
+      <dd>
+        <%= @comment_help_request.help_request_id %>
+      </dd>
+
+      <dt>
+        Body
+      </dt>
+      <dd>
+        <%= @comment_help_request.body %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@comment_help_request.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@comment_help_request.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h2>
+      Edit comment help request
+    </h2>
+
+    <form action="/modify_comment_help_request/<%= @comment_help_request.id %>"  method="post" >
+      <div class="form-group">
+        <label for="author_id_box">
+          Author
+        </label>
+
+        <input type="text" id="author_id_box" name="query_author_id" class="form-control" value="<%= @comment_help_request.author_id %>">
+      </div>
+
+      <div class="form-group">
+        <label for="help_request_id_box">
+          Help request
+        </label>
+
+        <input type="text" id="help_request_id_box" name="query_help_request_id" class="form-control" value="<%= @comment_help_request.help_request_id %>">
+      </div>
+
+      <div class="form-group">
+        <label for="body_box">
+          Body
+        </label>
+
+        <textarea id="body_box" name="query_body" class="form-control" rows="3"><%= @comment_help_request.body %></textarea>
+      </div>
+
+      <button class="btn btn-block btn-outline-secondary">
+        Update comment help request
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

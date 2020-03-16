@@ -1,0 +1,118 @@
+<div class="row mb-3">
+  <div class="col-md-12">
+    <h1>
+      List of all comment help requests
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h2>
+      Add a new comment help request
+    </h2>
+
+    <form action="/insert_comment_help_request" method="post">
+      <div class="form-group">
+        <label for="author_id_box">
+          Author
+        </label>
+
+        <input type="text" id="author_id_box" name="query_author_id" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="help_request_id_box">
+          Help request
+        </label>
+
+        <input type="text" id="help_request_id_box" name="query_help_request_id" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="body_box">
+          Body
+        </label>
+
+        <textarea id="body_box" name="query_body" class="form-control" rows="3"></textarea>
+      </div>
+
+      <button class="btn btn-block btn-outline-secondary">
+        Create comment help request
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div class="row mb-3">
+  <div class="col-md-12">
+    <table class="table">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Author
+        </th>
+
+        <th>
+          Help request
+        </th>
+
+        <th>
+          Body
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @comment_help_requests.each do |comment_help_request| %>
+      <tr>
+        <td>
+          <%= comment_help_request.id %>
+        </td>
+
+        <td>
+          <%= comment_help_request.author_id %>
+        </td>
+
+        <td>
+          <%= comment_help_request.help_request_id %>
+        </td>
+
+        <td>
+          <%= comment_help_request.body %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(comment_help_request.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(comment_help_request.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/comment_help_requests/<%= comment_help_request.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

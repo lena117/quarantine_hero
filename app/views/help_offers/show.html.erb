@@ -1,0 +1,146 @@
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h1>
+      Help offer #<%= @help_offer.id %> details
+    </h1>
+
+    <div class="row mb-3">
+      <div class="col">
+        <a href="/help_offers" class="btn btn-block btn-outline-secondary">
+          Go back
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/delete_help_offer/<%= @help_offer.id %>" class="btn btn-block btn-outline-secondary">
+          Delete help offer
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Offering
+      </dt>
+      <dd>
+        <%= @help_offer.offering_id %>
+      </dd>
+
+      <dt>
+        Title
+      </dt>
+      <dd>
+        <%= @help_offer.title %>
+      </dd>
+
+      <dt>
+        Description
+      </dt>
+      <dd>
+        <%= @help_offer.description %>
+      </dd>
+
+      <dt>
+        Date begin
+      </dt>
+      <dd>
+        <%= @help_offer.date_begin %>
+      </dd>
+
+      <dt>
+        Date end
+      </dt>
+      <dd>
+        <%= @help_offer.date_end %>
+      </dd>
+
+      <dt>
+        Location
+      </dt>
+      <dd>
+        <%= @help_offer.location %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@help_offer.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@help_offer.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h2>
+      Edit help offer
+    </h2>
+
+    <form action="/modify_help_offer/<%= @help_offer.id %>"  method="post" >
+      <div class="form-group">
+        <label for="offering_id_box">
+          Offering
+        </label>
+
+        <input type="text" id="offering_id_box" name="query_offering_id" class="form-control" value="<%= @help_offer.offering_id %>">
+      </div>
+
+      <div class="form-group">
+        <label for="title_box">
+          Title
+        </label>
+
+        <textarea id="title_box" name="query_title" class="form-control" rows="3"><%= @help_offer.title %></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="description_box">
+          Description
+        </label>
+
+        <textarea id="description_box" name="query_description" class="form-control" rows="3"><%= @help_offer.description %></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="date_begin_box">
+          Date begin
+        </label>
+
+        <input type="date" id="date_begin_box" name="query_date_begin" class="form-control" value="<%= @help_offer.date_begin %>">
+      </div>
+
+      <div class="form-group">
+        <label for="date_end_box">
+          Date end
+        </label>
+
+        <input type="date" id="date_end_box" name="query_date_end" class="form-control" value="<%= @help_offer.date_end %>">
+      </div>
+
+      <div class="form-group">
+        <label for="location_box">
+          Location
+        </label>
+
+        <textarea id="location_box" name="query_location" class="form-control" rows="3"><%= @help_offer.location %></textarea>
+      </div>
+
+      <button class="btn btn-block btn-outline-secondary">
+        Update help offer
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
