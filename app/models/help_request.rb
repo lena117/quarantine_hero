@@ -14,4 +14,11 @@
 #
 
 class HelpRequest < ApplicationRecord
+
+  belongs_to :requester, :class_name => "User"
+  has_many :comment_help_requests, :dependent => :destroy
+
+   def comments
+    return CommentHelpRequest.where({ :help_request_id => self.id })
+  end
 end

@@ -1,7 +1,7 @@
 <div class="row mb-3">
   <div class="col-md-12">
     <h1>
-      List of all help requests
+      All available help requests
     </h1>
   </div>
 </div>
@@ -9,107 +9,34 @@
 <hr>
 
 <div class="row mb-3">
-  <div class="col-md-8 offset-md-2">
-    <h2>
-      Add a new help request
-    </h2>
-
-    <form action="/insert_help_request" method="post">
-      <div class="form-group">
-        <label for="requester_id_box">
-          Requester
-        </label>
-
-        <input type="text" id="requester_id_box" name="query_requester_id" class="form-control">
-      </div>
-
-      <div class="form-group">
-        <label for="title_box">
-          Title
-        </label>
-
-        <textarea id="title_box" name="query_title" class="form-control" rows="3"></textarea>
-      </div>
-
-      <div class="form-group">
-        <label for="description_box">
-          Description
-        </label>
-
-        <textarea id="description_box" name="query_description" class="form-control" rows="3"></textarea>
-      </div>
-
-      <div class="form-group">
-        <label for="date_begin_box">
-          Date begin
-        </label>
-
-        <input type="date" id="date_begin_box" name="query_date_begin" class="form-control">
-      </div>
-
-      <div class="form-group">
-        <label for="date_end_box">
-          Date end
-        </label>
-
-        <input type="text" id="date_end_box" name="query_date_end" class="form-control">
-      </div>
-
-      <div class="form-group">
-        <label for="location_box">
-          Location
-        </label>
-
-        <textarea id="location_box" name="query_location" class="form-control" rows="3"></textarea>
-      </div>
-
-      <button class="btn btn-block btn-outline-secondary">
-        Create help request
-      </button>
-    </form>
-  </div>
-</div>
-
-<hr>
-<div class="row mb-3">
   <div class="col-md-12">
     <table class="table">
       <tr>
         <th>
-          ID
+          Title of Request
         </th>
 
         <th>
-          Requester
+          Details
         </th>
 
         <th>
-          Title
+          Help needed from...
         </th>
 
         <th>
-          Description
-        </th>
-
-        <th>
-          Date begin
-        </th>
-
-        <th>
-          Date end
+          ...to
         </th>
 
         <th>
           Location
         </th>
 
-        <th>
-          Created at
-        </th>
 
         <th>
-          Updated at
+          User
         </th>
+
 
         <th>
         </th>
@@ -117,13 +44,6 @@
 
       <% @help_requests.each do |help_request| %>
       <tr>
-        <td>
-          <%= help_request.id %>
-        </td>
-
-        <td>
-          <%= help_request.requester_id %>
-        </td>
 
         <td>
           <%= help_request.title %>
@@ -146,10 +66,7 @@
         </td>
 
         <td>
-          <%= time_ago_in_words(help_request.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(help_request.updated_at) %> ago
+          <%= help_request.requester.username %>
         </td>
 
         <td>
@@ -162,5 +79,9 @@
     </table>
   </div>
 </div>
+
+<hr>
+
+<a type="button" class="btn btn-secondary btn-lg btn-block" href="/new_help_request">Add a new help request</a>
 
 <hr>

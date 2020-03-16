@@ -29,7 +29,7 @@ get("/", { :controller => "application", :action => "hello" })
   # READ
   get("/comment_help_requests", { :controller => "comment_help_requests", :action => "index" })
   
-  get("/comment_help_requests/:path_id", { :controller => "comment_help_requests", :action => "show" })
+  get("/comment_help_requests/:path_id", { :controller => "comment_help_requests", :action => "index" })
   
   # UPDATE
   
@@ -41,6 +41,10 @@ get("/", { :controller => "application", :action => "hello" })
   #------------------------------
 
   # Routes for the Help request resource:
+  
+  # new
+
+  get("/new_help_request", { :controller => "help_requests", :action => "new"})
 
   # CREATE
   post("/insert_help_request", { :controller => "help_requests", :action => "create" })
@@ -60,6 +64,10 @@ get("/", { :controller => "application", :action => "hello" })
   #------------------------------
 
   # Routes for the Help offer resource:
+
+  # new
+
+  get("/new_help_offer", { :controller => "help_offers", :action => "new"})
 
   # CREATE
   post("/insert_help_offer", { :controller => "help_offers", :action => "create" })

@@ -1,7 +1,9 @@
 class ApplicationController < ActionController::Base
   before_action(:load_current_user)
   
-  # before_action(:force_user_sign_in)
+  before_action(:force_user_sign_in)
+
+  skip_before_action(:force_user_sign_in, { :only => [:hello] })
   
   def load_current_user
     the_id = session.fetch(:user_id)
@@ -16,7 +18,6 @@ class ApplicationController < ActionController::Base
 
   def hello 
     render({ :template => "hello.html.erb" })
-
   end 
 
 end

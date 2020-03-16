@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  # skip_before_action(:force_user_sign_in, { :only => [:new_registration_form, :create] })
+  skip_before_action(:force_user_sign_in, { :only => [:new_registration_form, :create] })
   
   def new_registration_form
     render({ :template => "user_sessions/sign_up.html.erb" })
@@ -7,6 +7,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new
+    @user.username = params.fetch("query_username")
     @user.email = params.fetch("query_email")
     @user.password = params.fetch("query_password")
     @user.password_confirmation = params.fetch("query_password_confirmation")

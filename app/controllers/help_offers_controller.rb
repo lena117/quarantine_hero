@@ -1,4 +1,12 @@
 class HelpOffersController < ApplicationController
+
+  skip_before_action(:force_user_sign_in, { :only => [:index] })
+
+  def new
+    @users = User.all.order({ :username => :asc })
+
+    render({ :template => "help_offers/new_help_offer.html.erb" })
+  end 
   def index
     @help_offers = HelpOffer.all.order({ :created_at => :desc })
 
@@ -6,6 +14,9 @@ class HelpOffersController < ApplicationController
   end
 
   def show
+
+    @users = User.all.order({ :username => :asc })
+    
     the_id = params.fetch("path_id")
     @help_offer = HelpOffer.where({:id => the_id }).at(0)
 

@@ -20,9 +20,9 @@ class CommentHelpRequestsController < ApplicationController
 
     if @comment_help_request.valid?
       @comment_help_request.save
-      redirect_to("/comment_help_requests", { :notice => "Comment help request created successfully." })
+      redirect_to("/help_requests/#{@comment_help_request.help_request.id}", { :notice => "New comment created successfully." })
     else
-      redirect_to("/comment_help_requests", { :notice => "Comment help request failed to create successfully." })
+      redirect_to("/help_requests", { :notice => "Comment failed to create successfully." })
     end
   end
 

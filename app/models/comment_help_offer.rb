@@ -11,4 +11,13 @@
 #
 
 class CommentHelpOffer < ApplicationRecord
+belongs_to :author, :class_name => "User"
+belongs_to :help_offer
+
+
+
+  def commenter
+    return User.where({ :id => self.author_id }).at(0)
+  end
+
 end

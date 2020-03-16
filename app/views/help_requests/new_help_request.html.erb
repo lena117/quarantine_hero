@@ -1,0 +1,60 @@
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h2>
+      Add a new help request
+    </h2>
+
+    <form action="/insert_help_request" method="post">
+
+    <input type="hidden" name="query_requester_id" value=<%= @users.where({ :id => session.fetch(:user_id)}).at(0).id %>>
+
+      <div class="form-group">
+        <label for="title_box">
+          Title
+        </label>
+
+        <textarea id="title_box" name="query_title" class="form-control" rows="3"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="description_box">
+          Description
+        </label>
+
+        <textarea id="description_box" name="query_description" class="form-control" rows="3"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="date_begin_box">
+          Date begin
+        </label>
+
+        <input type="date" id="date_begin_box" name="query_date_begin" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="date_end_box">
+          Date end
+        </label>
+
+        <input type="date" id="date_end_box" name="query_date_end" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="location_box">
+          Location
+        </label>
+
+        <textarea id="location_box" name="query_location" class="form-control" rows="3"></textarea>
+      </div>
+
+      <button class="btn btn-block btn-outline-secondary">
+        Create help request
+      </button>
+    </form>
+  </div>
+</div>
+
+
+
+<hr>

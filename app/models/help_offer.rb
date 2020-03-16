@@ -14,4 +14,12 @@
 #
 
 class HelpOffer < ApplicationRecord
+  belongs_to(:offering, {:class_name => "User", :foreign_key => "offering_id"})
+  has_many(:comment_help_offers, {:dependent => :destroy})
+
+ def comments
+    return CommentHelpOffer.where({ :help_offer_id => self.id })
+  end
+  
 end
+

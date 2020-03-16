@@ -1,4 +1,13 @@
 class HelpRequestsController < ApplicationController
+
+  skip_before_action(:force_user_sign_in, { :only => [:index] })
+
+  def new
+    @users = User.all.order({ :username => :asc })
+
+    render({ :template => "help_requests/new_help_request.html.erb" })
+  end 
+  
   def index
     @help_requests = HelpRequest.all.order({ :created_at => :desc })
 
@@ -6,6 +15,7 @@ class HelpRequestsController < ApplicationController
   end
 
   def show
+    @users = User.all.order({ :username => :asc })
     the_id = params.fetch("path_id")
     @help_request = HelpRequest.where({:id => the_id }).at(0)
 

@@ -1,30 +1,27 @@
 <div class="row mb-3">
   <div class="col-md-8 offset-md-2">
     <h1>
-      Help request #<%= @help_request.id %> details
+      Details of request "<%= @help_request.title %>"
     </h1>
 
     <div class="row mb-3">
       <div class="col">
-        <a href="/help_requests" class="btn btn-block btn-outline-secondary">
+        <a href="/help_offers" class="btn btn-block btn-outline-secondary">
           Go back
         </a>
       </div>
 
+      <% if @current_user == @help_request.requester%>
       <div class="col">
         <a href="/delete_help_request/<%= @help_request.id %>" class="btn btn-block btn-outline-secondary">
           Delete help request
         </a>
       </div>
+      <% end %>
     </div>
 
     <dl>
-      <dt>
-        Requester
-      </dt>
-      <dd>
-        <%= @help_request.requester_id %>
-      </dd>
+
 
       <dt>
         Title
@@ -41,14 +38,14 @@
       </dd>
 
       <dt>
-        Date begin
+        Help needed from
       </dt>
       <dd>
         <%= @help_request.date_begin %>
       </dd>
 
       <dt>
-        Date end
+        Help needed until
       </dt>
       <dd>
         <%= @help_request.date_end %>
@@ -62,14 +59,14 @@
       </dd>
 
       <dt>
-        Created at
+        Created 
       </dt>
       <dd>
         <%= time_ago_in_words(@help_request.created_at) %> ago
       </dd>
 
       <dt>
-        Updated at
+        Last updated
       </dt>
       <dd>
         <%= time_ago_in_words(@help_request.updated_at) %> ago
@@ -80,21 +77,68 @@
 
 <hr>
 
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+<h2>Comments</h2>
+
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th scope="col">User</th>
+    <th scope="col">Comment</th>
+    <th scope="col">Posted</th>
+  </tr>
+  </thead>
+
+  <% @help_request.comment_help_requests.each do |comment| %>
+  <tr class="table-active">
+  <tbody>
+    <td>
+      <%= comment.commenter.username %>
+    </td>
+
+    <td>
+      <%= comment.body %>
+    </td>
+
+    <td>
+      <%= time_ago_in_words(comment.created_at) %>
+    </td>
+  </tr>
+  </tbody>
+  
+  <% end %>
+</table>
+
+<hr>
+
+<h3>Add a new comment</h3>
+
+<form action="/insert_comment_help_request" method="post">
+  <input id="help_request_id" type="hidden" value="<%= @help_request.id %>" name="query_help_request_id">
+  <input type="hidden" name="query_author_id" value=<%= @users.where({ :id => session.fetch(:user_id)}).at(0).id %>>
+
+  <br>
+  <textarea id="browser_comment" name="query_body" placeholder="Enter a comment..."></textarea>
+  <br>
+  <button>Add comment</button>
+</form>
+</div>
+</div>
+
+<hr>
 
 <div class="row mb-3">
   <div class="col-md-8 offset-md-2">
-    <h2>
+    <h3>
       Edit help request
-    </h2>
+    </h3>
 
+    <% if @current_user == @help_request.requester%>
     <form action="/modify_help_request/<%= @help_request.id %>"  method="post" >
-      <div class="form-group">
-        <label for="requester_id_box">
-          Requester
-        </label>
 
-        <input type="text" id="requester_id_box" name="query_requester_id" class="form-control" value="<%= @help_request.requester_id %>">
-      </div>
+    <input type="hidden" name="query_requester_id" value=<%= @users.where({ :id => session.fetch(:user_id)}).at(0).id %>>
+  
 
       <div class="form-group">
         <label for="title_box">
@@ -125,7 +169,7 @@
           Date end
         </label>
 
-        <input type="text" id="date_end_box" name="query_date_end" class="form-control" value="<%= @help_request.date_end %>">
+        <input type="date" id="date_end_box" name="query_date_end" class="form-control" value="<%= @help_request.date_end %>">
       </div>
 
       <div class="form-group">
@@ -140,7 +184,18 @@
         Update help request
       </button>
     </form>
+    <% else %>
+    <dd>
+      You need to be signed in in order to edit this request
+      <br>
+      <br>
+      <a type="button" class="btn btn-outline-primary" href="/user_sign_in">
+        Sign in here
+      </a>
+  </dd>
   </div>
 </div>
 
+  <% end %>
 <hr>
+

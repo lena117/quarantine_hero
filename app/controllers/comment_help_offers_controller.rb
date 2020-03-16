@@ -13,6 +13,7 @@ class CommentHelpOffersController < ApplicationController
   end
 
   def create
+
     @comment_help_offer = CommentHelpOffer.new
     @comment_help_offer.author_id = params.fetch("query_author_id")
     @comment_help_offer.help_offer_id = params.fetch("query_help_offer_id")
@@ -20,11 +21,12 @@ class CommentHelpOffersController < ApplicationController
 
     if @comment_help_offer.valid?
       @comment_help_offer.save
-      redirect_to("/comment_help_offers", { :notice => "Comment help offer created successfully." })
+      redirect_to("/help_offers/#{@comment_help_offer.help_offer.id}", { :notice => "New comment created successfully." })
     else
-      redirect_to("/comment_help_offers", { :notice => "Comment help offer failed to create successfully." })
+      redirect_to("/help_offers", { :notice => "Comment failed to create successfully." })
     end
   end
+
 
   def update
     the_id = params.fetch("path_id")
