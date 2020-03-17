@@ -14,7 +14,12 @@
 #
 
 class HelpRequest < ApplicationRecord
-
+  validates :title, :presence => true
+  validates :description, :presence => true
+  validates :date_begin, :presence => true
+  validates :date_end, :presence => true
+  validates :location, :presence => true
+  
   belongs_to :requester, :class_name => "User"
   has_many :comment_help_requests, :dependent => :destroy
 

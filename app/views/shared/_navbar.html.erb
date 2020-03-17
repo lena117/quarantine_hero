@@ -17,19 +17,17 @@
             Menu
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a href="/user_sign_up" class="dropdown-item">
-             Sign up
-            </a>
-             <a href="/user_sign_in" class="dropdown-item">
-             Sign in
-            </a>
-
-          
             <a href="/help_requests" class="dropdown-item">
              Help requests
             </a>
             <a href="/help_offers" class="dropdown-item">
              Help offers
+            </a>
+              <a href="/user_sign_up" class="dropdown-item">
+             Sign up
+            </a>
+             <a href="/user_sign_in" class="dropdown-item">
+             Sign in
             </a>
           </div>
         </li>
@@ -44,19 +42,17 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-            <a href="/users/:the_username" class="dropdown-item">
-            <%= @current_user.username %>
-            </a>
-
-             <a href="/user_sign_out" class="dropdown-item">
-             Sign out
-            </a>
-
             <a href="/help_requests" class="dropdown-item">
              Help requests
             </a>
             <a href="/help_offers" class="dropdown-item">
              Help offers
+            </a>
+            <a href="/users/:the_username" class="dropdown-item">
+            <%= @current_user.username %>
+            </a>
+             <a href="/user_sign_out" class="dropdown-item">
+             Sign out
             </a>
           </div>
         </li>

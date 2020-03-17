@@ -14,6 +14,12 @@
 #
 
 class HelpOffer < ApplicationRecord
+  validates :title, :presence => true
+  validates :description, :presence => true
+  validates :date_begin, :presence => true
+  validates :date_end, :presence => true
+  validates :location, :presence => true
+  
   belongs_to(:offering, {:class_name => "User", :foreign_key => "offering_id"})
   has_many(:comment_help_offers, {:dependent => :destroy})
 
