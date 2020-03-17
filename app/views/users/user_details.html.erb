@@ -1,0 +1,187 @@
+<div class="row mb-3">
+  <div class="col-md-12">
+    <h1>
+      Help offers posted by you
+    </h1>
+  </div>
+</div>
+
+<% if @current_user.help_offers.count == 0 %>
+<p>You have not posted a help offer so far.</p>
+<% else %>
+<div class="row mb-3">
+  <div class="col-md-12">
+    <table class="table">
+      <tr class="table-secondary">
+        <th>
+          Title of Offer
+        </th>
+
+        <th>
+          Details
+        </th>
+
+        <th>
+          Offer available from...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </th>
+
+        <th>
+          ...to &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+        </th>
+        
+
+        <th>
+          Location
+        </th>
+
+
+        <th>
+          User
+        </th>
+
+
+        <th>
+        </th>
+      </tr>
+
+      <% @current_user.help_offers.each do |user_offer| %>
+      <tr>
+
+        <td class="font-weight-bold">
+          <%= user_offer.title %>
+        </td>
+
+        <td>
+          <%= user_offer.description %>
+        </td>
+
+        <td>
+          <%= user_offer.date_begin %>
+        </td>
+
+        <td>
+          <%= user_offer.date_end %>
+        </td>
+
+        <td>
+          <%= user_offer.location %>
+        </td>
+
+        <td>
+          <%= user_offer.offering.username %>
+        </td>
+
+        <td>
+          <a href="/help_offers/<%= user_offer.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+<% end %>
+<br>
+<br>
+<br>
+<hr>
+
+<a type="button" class="btn btn-success btn-lg btn-block" href="/new_help_offer">Add a new help offer</a>
+
+<hr>
+<br>
+<br>
+<br>
+<% if @current_user.help_requests.count == 0 %>
+<p>You have not posted a help request so far.</p>
+<% else %>
+<div class="row mb-3">
+  <div class="col-md-12">
+    <h1>
+      Help requests posted by you
+    </h1>
+  </div>
+</div>
+
+
+<div class="row mb-3">
+  <div class="col-md-12">
+    <table class="table">
+      <tr class="table-secondary">
+        <th>
+          Title of Request
+        </th>
+
+        <th>
+          Details
+        </th>
+
+        <th>
+          Help needed from...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </th>
+
+        <th>
+          ...to&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </th>
+
+        <th>
+          Location
+        </th>
+
+
+        <th>
+          User
+        </th>
+
+
+        <th>
+        </th>
+      </tr>
+
+      <% @current_user.help_requests.each do |user_request| %>
+      <tr>
+
+        <td class="font-weight-bold">
+          <%= user_request.title %>
+        </td>
+
+        <td>
+          <%= user_request.description %>
+        </td>
+
+        <td>
+          <%= user_request.date_begin %>
+        </td>
+
+        <td>
+          <%= user_request.date_end %>
+        </td>
+
+        <td>
+          <%= user_request.location %>
+        </td>
+
+        <td>
+          <%= user_request.requester.username %>
+        </td>
+
+        <td>
+          <a class="text-info" href="/help_requests/<%= user_request.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+<% end %>
+<br>
+<br>
+<br>
+<hr>
+<a type="button" class="btn btn-info btn-lg btn-block" href="/new_help_request">Add a new help request</a>
+
+
+<hr>

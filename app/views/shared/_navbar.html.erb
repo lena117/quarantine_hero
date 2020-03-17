@@ -1,6 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
   <div class="container">
     <a class="navbar-brand" href="/">
+    <i class="fas fa-hands-helping"></i>
       Quarantine Hero
     </a>
 
@@ -8,6 +9,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
+    <% if session.fetch(:user_id).blank? %>
     <div class="collapse navbar-collapse" id="collapsible-nav-links">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item dropdown">
@@ -21,9 +23,7 @@
              <a href="/user_sign_in" class="dropdown-item">
              Sign in
             </a>
-             <a href="/user_sign_out" class="dropdown-item">
-             Sign out
-            </a>
+
           
             <a href="/help_requests" class="dropdown-item">
              Help requests
@@ -35,5 +35,36 @@
         </li>
       </ul>
     </div> <!-- .navbar-collapse -->
+    <% else %>
+        <div class="collapse navbar-collapse" id="collapsible-nav-links">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Menu
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+            <a href="/users/:the_username" class="dropdown-item">
+            <%= @current_user.username %>
+            </a>
+
+             <a href="/user_sign_out" class="dropdown-item">
+             Sign out
+            </a>
+
+            <a href="/help_requests" class="dropdown-item">
+             Help requests
+            </a>
+            <a href="/help_offers" class="dropdown-item">
+             Help offers
+            </a>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <% end %>
   </div> <!-- .container -->
 </nav>
+
+
+

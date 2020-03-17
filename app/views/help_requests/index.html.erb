@@ -6,12 +6,11 @@
   </div>
 </div>
 
-<hr>
 
 <div class="row mb-3">
   <div class="col-md-12">
     <table class="table">
-      <tr>
+      <tr class="table-secondary">
         <th>
           Title of Request
         </th>
@@ -21,11 +20,11 @@
         </th>
 
         <th>
-          Help needed from...
+          Help needed from...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </th>
 
         <th>
-          ...to
+          ...to&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </th>
 
         <th>
@@ -45,7 +44,7 @@
       <% @help_requests.each do |help_request| %>
       <tr>
 
-        <td>
+        <td class="font-weight-bold">
           <%= help_request.title %>
         </td>
 
@@ -70,7 +69,7 @@
         </td>
 
         <td>
-          <a href="/help_requests/<%= help_request.id %>">
+          <a class="text-info" href="/help_requests/<%= help_request.id %>">
             Show details
           </a>
         </td>
@@ -79,9 +78,13 @@
     </table>
   </div>
 </div>
-
+<hr>
+<br>
+<br>
+<br>
+<br>
 <hr>
 
-<a type="button" class="btn btn-secondary btn-lg btn-block" href="/new_help_request">Add a new help request</a>
+<a type="button" class="btn btn-info btn-lg btn-block" href="/new_help_request">Add a new help request</a>
 
 <hr>

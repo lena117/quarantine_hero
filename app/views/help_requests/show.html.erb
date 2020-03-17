@@ -1,84 +1,52 @@
-<div class="row mb-3">
-  <div class="col-md-8 offset-md-2">
-    <h1>
-      Details of request "<%= @help_request.title %>"
-    </h1>
-
-    <div class="row mb-3">
-      <div class="col">
-        <a href="/help_offers" class="btn btn-block btn-outline-secondary">
-          Go back
-        </a>
-      </div>
-
-      <% if @current_user == @help_request.requester%>
-      <div class="col">
-        <a href="/delete_help_request/<%= @help_request.id %>" class="btn btn-block btn-outline-secondary">
-          Delete help request
-        </a>
-      </div>
-      <% end %>
-    </div>
-
-    <dl>
-
-
-      <dt>
-        Title
-      </dt>
-      <dd>
-        <%= @help_request.title %>
-      </dd>
-
-      <dt>
-        Description
-      </dt>
-      <dd>
-        <%= @help_request.description %>
-      </dd>
-
-      <dt>
-        Help needed from
-      </dt>
-      <dd>
-        <%= @help_request.date_begin %>
-      </dd>
-
-      <dt>
-        Help needed until
-      </dt>
-      <dd>
-        <%= @help_request.date_end %>
-      </dd>
-
-      <dt>
-        Location
-      </dt>
-      <dd>
-        <%= @help_request.location %>
-      </dd>
-
-      <dt>
-        Created 
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@help_request.created_at) %> ago
-      </dd>
-
-      <dt>
-        Last updated
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@help_request.updated_at) %> ago
-      </dd>
-    </dl>
-  </div>
-</div>
-
-<hr>
-
-<div class="row mb-3">
-  <div class="col-md-8 offset-md-2">
+<div class="jumbotron">
+ <span class="badge badge-info">Help Request</span> 
+  <h1 class="display-4"><%= @help_request.title %></h1>
+  <p class="lead">&nbsp;&nbsp;<%= @help_request.description %></p>
+  <hr class="my-4">
+   <table class="table table-borderless">
+      <tr>
+        <td class="font-weight-bold">
+            Period:
+        </td>
+        <td>
+            <%= @help_request.date_begin %> to <%= @help_request.date_end %>
+        </td>
+      </tr>
+      <tr>
+        <td class="font-weight-bold">
+            Location:
+        </td>
+        <td>
+            <%= @help_request.location %>
+        </td>
+      </tr>
+       <tr>
+        <td class="font-weight-bold">
+            User:
+        </td>
+        <td>
+            <%= @help_request.requester.username %>
+        </td>
+      </tr>
+      <tr>
+        <td class="font-weight-bold">
+            Request created: 
+        </td>
+        <td>
+            <%= time_ago_in_words(@help_request.created_at) %> ago
+        </td>
+      </tr>
+        <tr>
+        <td class="font-weight-bold">
+            Request last updated:
+        </td>
+        <td>
+            <%= time_ago_in_words(@help_request.updated_at) %> ago
+        </td>
+      </tr>
+      </table>
+    <hr>
+  <div>
 <h2>Comments</h2>
 
 <table class="table table-hover">
@@ -102,7 +70,7 @@
     </td>
 
     <td>
-      <%= time_ago_in_words(comment.created_at) %>
+      <%= time_ago_in_words(comment.created_at) %> ago
     </td>
   </tr>
   </tbody>
@@ -112,7 +80,7 @@
 
 <hr>
 
-<h3>Add a new comment</h3>
+<h4>Add a new comment</h4>
 
 <form action="/insert_comment_help_request" method="post">
   <input id="help_request_id" type="hidden" value="<%= @help_request.id %>" name="query_help_request_id">
@@ -121,20 +89,21 @@
   <br>
   <textarea id="browser_comment" name="query_body" placeholder="Enter a comment..."></textarea>
   <br>
-  <button>Add comment</button>
+  <br>
+  <button class="btn btn-primary">Add comment</button>
+  
 </form>
 </div>
-</div>
 
+<br>
 <hr>
 
-<div class="row mb-3">
-  <div class="col-md-8 offset-md-2">
-    <h3>
+ <% if @current_user == @help_request.requester%>
+<div>
+  <div>
+    <h4>
       Edit help request
-    </h3>
-
-    <% if @current_user == @help_request.requester%>
+    </h4>
     <form action="/modify_help_request/<%= @help_request.id %>"  method="post" >
 
     <input type="hidden" name="query_requester_id" value=<%= @users.where({ :id => session.fetch(:user_id)}).at(0).id %>>
@@ -180,22 +149,22 @@
         <textarea id="location_box" name="query_location" class="form-control" rows="3"><%= @help_request.location %></textarea>
       </div>
 
-      <button class="btn btn-block btn-outline-secondary">
+      <button class="btn btn-block btn-outline-primary">
         Update help request
       </button>
     </form>
-    <% else %>
-    <dd>
-      You need to be signed in in order to edit this request
-      <br>
-      <br>
-      <a type="button" class="btn btn-outline-primary" href="/user_sign_in">
-        Sign in here
-      </a>
-  </dd>
+    <br>
+    <form action="/delete_help_request/<%= @help_request.id %>"  method="get" >
+     <button class="btn btn-block btn-primary">
+        Delete help request
+      </button>
+    </form>
+    
   </div>
 </div>
 
   <% end %>
 <hr>
+</div>
+
 

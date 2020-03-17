@@ -88,6 +88,9 @@ get("/", { :controller => "application", :action => "hello" })
 
   # Routes for the User account:
 
+  # details user
+  get("/users/:user_username", { :controller => "users", :action => "details" })    
+
   # SIGN UP FORM
   get("/user_sign_up", { :controller => "users", :action => "new_registration_form" })        
   # CREATE RECORD

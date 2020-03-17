@@ -6,12 +6,11 @@
   </div>
 </div>
 
-<hr>
 
 <div class="row mb-3">
   <div class="col-md-12">
     <table class="table">
-      <tr>
+      <tr class="table-secondary">
         <th>
           Title of Offer
         </th>
@@ -21,12 +20,13 @@
         </th>
 
         <th>
-          Offer available from...
+          Offer available from...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </th>
 
         <th>
-          ...to
+          ...to &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
         </th>
+        
 
         <th>
           Location
@@ -45,7 +45,7 @@
       <% @help_offers.each do |help_offer| %>
       <tr>
 
-        <td>
+        <td class="font-weight-bold">
           <%= help_offer.title %>
         </td>
 
@@ -81,7 +81,11 @@
 </div>
 
 <hr>
-
-<a type="button" class="btn btn-secondary btn-lg btn-block" href="/new_help_offer">Add a new help offer</a>
+<br>
+<br>
+<br>
+<br>
+<hr>
+<a type="button" class="btn btn-success btn-lg btn-block" href="/new_help_offer">Add a new help offer</a>
 
 <hr>

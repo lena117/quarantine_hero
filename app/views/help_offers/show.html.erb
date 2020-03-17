@@ -1,84 +1,52 @@
-<div class="row mb-3">
-  <div class="col-md-8 offset-md-2">
-    <h1>
-      Details of offer "<%= @help_offer.title %>"
-    </h1>
-
-    <div class="row mb-3">
-      <div class="col">
-        <a href="/help_offers" class="btn btn-block btn-outline-secondary">
-          Go back
-        </a>
-      </div>
-
-      <% if @current_user == @help_offer.offering%>
-      <div class="col">
-        <a href="/delete_help_offer/<%= @help_offer.id %>" class="btn btn-block btn-outline-secondary">
-          Delete help offer
-        </a>
-      </div>
-      <% end %>
-    </div>
-
-    <dl>
-
-
-      <dt>
-        Title
-      </dt>
-      <dd>
-        <%= @help_offer.title %>
-      </dd>
-
-      <dt>
-        Description
-      </dt>
-      <dd>
-        <%= @help_offer.description %>
-      </dd>
-
-      <dt>
-        Offer valid from
-      </dt>
-      <dd>
-        <%= @help_offer.date_begin %>
-      </dd>
-
-      <dt>
-        Offer valid to
-      </dt>
-      <dd>
-        <%= @help_offer.date_end %>
-      </dd>
-
-      <dt>
-        Location
-      </dt>
-      <dd>
-        <%= @help_offer.location %>
-      </dd>
-
-      <dt>
-        Created 
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@help_offer.created_at) %> ago
-      </dd>
-
-      <dt>
-        Last updated
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@help_offer.updated_at) %> ago
-      </dd>
-    </dl>
-  </div>
-</div>
-
-<hr>
-
-<div class="row mb-3">
-  <div class="col-md-8 offset-md-2">
+<div class="jumbotron">
+<span class="badge badge-success">Help Offer</span> 
+  <h1 class="display-4"><%= @help_offer.title %></h1>
+  <p class="lead">&nbsp;&nbsp;<%= @help_offer.description %></p>
+  <hr class="my-4">
+   <table class="table table-borderless">
+      <tr>
+        <td class="font-weight-bold">
+            Period:
+        </td>
+        <td>
+            <%= @help_offer.date_begin %> to <%= @help_offer.date_end %>
+        </td>
+      </tr>
+      <tr>
+        <td class="font-weight-bold">
+            User:
+        </td>
+        <td>
+            <%= @help_offer.offering.username %>
+        </td>
+      </tr>
+      <tr>
+        <td class="font-weight-bold">
+            Location:
+        </td>
+        <td>
+            <%= @help_offer.location %>
+        </td>
+      </tr>
+      <tr>
+        <td class="font-weight-bold">
+            Offer created: 
+        </td>
+        <td>
+            <%= time_ago_in_words(@help_offer.created_at) %> ago
+        </td>
+      </tr>
+        <tr>
+        <td class="font-weight-bold">
+            Offer last updated:
+        </td>
+        <td>
+            <%= time_ago_in_words(@help_offer.updated_at) %> ago
+        </td>
+      </tr>
+      </table>
+    <hr>
+  <div>
 <h2>Comments</h2>
 
 <table class="table table-hover">
@@ -102,7 +70,7 @@
     </td>
 
     <td>
-      <%= time_ago_in_words(comment.created_at) %>
+      <%= time_ago_in_words(comment.created_at) %> ago
     </td>
   </tr>
   </tbody>
@@ -112,29 +80,30 @@
 
 <hr>
 
-<h3>Add a new comment</h3>
+<h4>Add a new comment</h4>
 
 <form action="/insert_comment_help_offer" method="post">
-  <input id="browser_photo_id" type="hidden" value="<%= @help_offer.id %>" name="query_help_offer_id">
+  <input id="help_offer_id" type="hidden" value="<%= @help_offer.id %>" name="query_help_offer_id">
   <input type="hidden" name="query_author_id" value=<%= @users.where({ :id => session.fetch(:user_id)}).at(0).id %>>
 
   <br>
   <textarea id="browser_comment" name="query_body" placeholder="Enter a comment..."></textarea>
   <br>
-  <button>Add comment</button>
+  <br>
+  <button class="btn btn-primary">Add comment</button>
+  
 </form>
 </div>
-</div>
 
+<br>
 <hr>
 
-<div class="row mb-3">
-  <div class="col-md-8 offset-md-2">
-    <h3>
+ <% if @current_user == @help_offer.offering%>
+<div>
+  <div>
+    <h4>
       Edit help offer
-    </h3>
-
-    <% if @current_user == @help_offer.offering%>
+    </h4>
     <form action="/modify_help_offer/<%= @help_offer.id %>"  method="post" >
 
     <input type="hidden" name="query_offering_id" value=<%= @users.where({ :id => session.fetch(:user_id)}).at(0).id %>>
@@ -180,22 +149,22 @@
         <textarea id="location_box" name="query_location" class="form-control" rows="3"><%= @help_offer.location %></textarea>
       </div>
 
-      <button class="btn btn-block btn-outline-secondary">
+      <button class="btn btn-block btn-outline-primary">
         Update help offer
       </button>
     </form>
-    <% else %>
-    <dd>
-      You need to be signed in in order to edit this offer.
-      <br>
-      <br>
-      <a type="button" class="btn btn-outline-primary" href="/user_sign_in">
-        Sign in here
-      </a>
-  </dd>
+    <br>
+    <form action="/delete_help_offer/<%= @help_offer.id %>"  method="get" >
+     <button class="btn btn-block btn-primary">
+        Delete help offer
+      </button>
+    </form>
+    
   </div>
 </div>
 
   <% end %>
 <hr>
+</div>
+
 

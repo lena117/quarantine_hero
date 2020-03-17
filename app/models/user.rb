@@ -19,6 +19,7 @@ class User < ApplicationRecord
   has_many :help_requests, :foreign_key => "requester_id", :dependent => :destroy
   has_many :comment_help_requests, :foreign_key => "author_id", :dependent => :destroy
   has_many :comment_help_offers, :foreign_key => "author_id", :dependent => :destroy
+
 end
 
 
