@@ -44,12 +44,23 @@ namespace(:dev) do
         {id: 11, date_begin:"2020-04-02", date_end:"2020-04-12", description:"I can help people needing assistance in grocery shopping", title:"Help with shopping", location:"Chicago", offering_id: 1, created_at: "2020-03-17 09:24:34", updated_at: "2020-03-17 10:25:00"},
         {id: 12, date_begin:"2020-04-05", date_end:"2020-04-20", description:"I am a trained babysitter and can help out every Tuesday morning", title:"Babysitting", location:"New York", offering_id: 2, created_at: "2020-03-17 09:24:34", updated_at: "2020-03-17 10:25:00"},
         {id: 13, date_begin:"2020-04-02", date_end:"2020-04-12", description:"I am a teacher and can provide virtual classes to kids grades 4-6", title:"Teaching online", location:"Virtual", offering_id: 3, created_at: "2020-03-10 09:24:34", updated_at: "2020-03-11 10:25:00"},
-        {id: 14, date_begin:"2020-04-05", date_end:"2020-04-20", description:"I am a student and can assist in multiple areas, like shopping, babysitting or some minor teaching", title:"Multiple options", location:"Los Angeles", offering_id: 4, created_at: "2020-03-17 09:24:34", updated_at: "2020-03-18 10:25:00"},
+        {id: 14, date_begin:"2020-04-05", date_end:"2020-04-20", description:"I am a student and can assist in multiple areas, like shopping, babysitting or some minor teaching", title:"Multiple options", location:"Los Angeles", offering_id: 4, created_at: "2020-03-17 09:24:34", updated_at: "2020-03-17 10:25:00"},
         {id: 15, date_begin:"2020-04-09", date_end:"2020-04-12", description:"Anyone need some assistance in daily errands? I can help out anyone who needs assistance in shopping or other smaller tasks.", title:"Everyday assistance", location:"Chicago", offering_id: 5, created_at: "2020-03-14 09:24:34", updated_at: "2020-03-17 10:25:00"},
         {id: 16, date_begin:"2020-04-10", date_end:"2020-04-20", description:"I am a trained nanny located in Miami and would be free every Wednesday and Thursday to help parents in need.", title:"Nannying in Miami", location:"Miami", offering_id: 6, created_at: "2020-03-18 09:24:34", updated_at: "2020-03-18 10:25:00"},
 
       ]
       HelpOffer.insert_all!(help_offers)
+
+        comment_help_offers = [
+        {id: 31, body:"I would really appreciate some help with shopping for me any my three kids. I live in South Loop. Feel free to call/text me on: 312-123-1234", author_id: 2, help_offer_id: 11, created_at: "2020-03-18 11:00:00", updated_at: "2020-03-18 11:00:00"},
+        {id: 32, body:"I am really interested! Can you please send me an e-mail? this is my address: tom@test.com", author_id: 3, help_offer_id: 12, created_at: "2020-03-19 11:00:00", updated_at: "2020-03-19 11:00:00"},
+        {id: 33, body:"My kids are in 4th and 5th grade and some online teaching would be really helpful, I'm very interested. Here is my phone number: 312-456-4567", author_id: 4, help_offer_id: 13, created_at: "2020-03-12 11:00:00", updated_at: "2020-03-12 11:00:00"},
+        {id: 34, body:"Your offer sounds great! Both my wife and I have to work full-time and could really need some help with our little kids (4 and 7), as their school/daycare is currently canceled. pleae e-mail me on: mike@test.com", author_id: 5, help_offer_id: 14, created_at: "2020-03-18 11:00:00", updated_at: "2020-03-18 11:00:00"},
+        {id: 35, body:"My grandparents live in the area and could really need some help, as they are not allowed to leave their house right now. Please call me on 312-678-6789", author_id: 6, help_offer_id: 15, created_at: "2020-03-18 11:00:00", updated_at: "2020-03-18 11:00:00"},
+        {id: 36, body:"That sounds great! I could really need some help on those days! Please text me on: 312.123.1234 ", author_id: 7, help_offer_id: 16, created_at: "2020-03-19 11:00:00", updated_at: "2020-03-19 11:00:00"},
+
+      ]
+      CommentHelpOffer.insert_all!(comment_help_offers)
 
         help_requests = [
         {id: 21, date_begin:"2020-04-02", date_end:"2020-04-12", description:"I need someone to help my grandsparents do their groceries twice a week", title: "Need help with shopping", location:"Chicago", requester_id: 2, created_at: "2020-03-17 09:24:34", updated_at: "2020-03-17 10:25:00"},
@@ -62,8 +73,8 @@ namespace(:dev) do
       HelpRequest.insert_all!(help_requests)
 
        comment_help_requests = [
-        {id: 41, body:"Would love to help! feel free to text on: 312-123-4352", author_id: 1, help_request_id: 21, created_at: "2020-03-17 11:00:00", updated_at: "2020-03-17 11:00:00"},
-        {id: 42, body:"I would be able to help during the week/in the afternoon. Feel free to reach out to me (kaitlyn@test.com)", author_id: 8, help_request_id: 22, created_at: "2020-03-17 11:00:00", updated_at: "2020-03-17 11:00:00"},
+        {id: 41, body:"Would love to help! feel free to text on: 312-123-4352", author_id: 1, help_request_id: 21, created_at: "2020-03-18 11:00:00", updated_at: "2020-03-18 11:00:00"},
+        {id: 42, body:"I would be able to help during the week/in the afternoon. Feel free to reach out to me (kaitlyn@test.com)", author_id: 8, help_request_id: 22, created_at: "2020-03-19 11:00:00", updated_at: "2020-03-19 11:00:00"},
         {id: 43, body:"Until when exactly do you need your medication? I am free most of the days and have to leave the house anyways. Give me a call on 312-567-5675", author_id: 9, help_request_id: 23, created_at: "2020-03-12 11:00:00", updated_at: "2020-03-12 11:00:00"},
         {id: 44, body:"I can help! Feel free to call: 312-567-3452", author_id: 10, help_request_id: 24, created_at: "2020-03-18 11:00:00", updated_at: "2020-03-18 11:00:00"},
         {id: 45, body:"Hey! I am a trained nanny and would love to help you out. I'm free most days (except Tuesday and Sunday). Feel free to text: 312-980-5674", author_id: 6, help_request_id: 25, created_at: "2020-03-18 11:00:00", updated_at: "2020-03-18 11:00:00"},
@@ -72,16 +83,7 @@ namespace(:dev) do
       ]
       CommentHelpRequest.insert_all!(comment_help_requests)
 
-      comment_help_offers = [
-        {id: 31, body:"I would really appreciate some help with shopping for me any my three kids. I live in South Loop. Feel free to call/text me on: 312-123-1234", author_id: 2, help_offer_id: 11, created_at: "2020-03-17 11:00:00", updated_at: "2020-03-17 11:00:00"},
-        {id: 32, body:"I am really interested! Can you please send me an e-mail? this is my address: tom@test.com", author_id: 3, help_offer_id: 12, created_at: "2020-03-17 11:00:00", updated_at: "2020-03-17 11:00:00"},
-        {id: 33, body:"My kids are in 4th and 5th grade and some online teaching would be really helpful, I'm very interested. Here is my phone number: 312-456-4567", author_id: 4, help_offer_id: 13, created_at: "2020-03-12 11:00:00", updated_at: "2020-03-12 11:00:00"},
-        {id: 34, body:"Your offer sounds great! Both my wife and I have to work full-time and could really need some help with our little kids (4 and 7), as their school/daycare is currently canceled. pleae e-mail me on: mike@test.com", author_id: 5, help_offer_id: 14, created_at: "2020-03-18 11:00:00", updated_at: "2020-03-18 11:00:00"},
-        {id: 35, body:"My grandparents live in the area and could really need some help, as they are not allowed to leave their house right now. Please call me on 312-678-6789", author_id: 6, help_offer_id: 15, created_at: "2020-03-18 11:00:00", updated_at: "2020-03-18 11:00:00"},
-        {id: 36, body:"That sounds great! I could really need some help on those days! Please text me on: 312.123.1234 ", author_id: 7, help_offer_id: 16, created_at: "2020-03-19 11:00:00", updated_at: "2020-03-19 11:00:00"},
-
-      ]
-      CommentHelpOffer.insert_all!(comment_help_offers)
+    
      
       ending = Time.now
       elapsed = ending - starting
